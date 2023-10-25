@@ -14,16 +14,21 @@ public class Cond {
             int troom = scan.nextInt();
             int tcond = scan.nextInt();
             String mode = scan.next();
-            int t = troom;
+            modeCond(troom, tcond, mode);
+    }
 
-            if ((mode.equals("fan"))){t=troom;}
+        public static int modeCond(int troom, int tcond, String mode) throws IOException {
+                int t = troom;
 
-            if ((troom<=tcond)&((mode.equals("auto"))|(mode.equals("heat")))){t = tcond;}
+                if ((mode.equals("fan"))){t= troom;}
 
-            if ((troom>tcond)&((mode.equals("auto"))|(mode.equals("freeze")))){t = tcond;}
+                if ((troom <= tcond)&((mode.equals("auto"))|(mode.equals("heat")))){t = tcond;}
 
-            String outputFName = "OUTPUT.TXT";//запись в файл результата
-            Files.writeString(Path.of(outputFName), String.valueOf(t));
+                if ((troom > tcond)&((mode.equals("auto"))|(mode.equals("freeze")))){t = tcond;}
+
+                String outputFName = "OUTPUT.TXT";//запись в файл результата
+                Files.writeString(Path.of(outputFName), String.valueOf(t));
+            return t;
         }
 
 }
